@@ -1,0 +1,14 @@
+.footerSection {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.quickLinks, .customerService, .socialMedia, .legalLinks {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 5px;
+}

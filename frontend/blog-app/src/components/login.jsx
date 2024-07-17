@@ -17,7 +17,8 @@ function Login() {
         "http://localhost:5000/api/auth/login",
         { email, password }
       );
-      login(response.data.token);
+      login(response.data.token, response.data.isAdmin);
+      alert("Login successful!");
       navigate('/');
     } catch (error) {
       console.error("Login error", error);

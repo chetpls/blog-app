@@ -7,6 +7,8 @@ import HomePage from './pages/HomePage';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import './App.css';
+import Article from './pages/Article';
+import AllArticles from './pages/AllArticles';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/" element={<HomePage />} />
+              <Route path="/articles" element={<AllArticles />} />
+              <Route path="/posts/:id" element={<Article />} /> 
             </Routes>
           </div>
           <Footer /> {/* Add Footer */}

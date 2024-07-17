@@ -6,6 +6,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -18,15 +19,17 @@ export const AuthProvider = ({ children }) => {
       .then(response => {
         setUser(response.data.user);
         setIsLoggedIn(true);
+        setIsAdmin(response.data.user.isAdmin);
       })
       .catch(() => {
         setUser(null);
         setIsLoggedIn(false);
+        setIsAdmin(false);
       });
     }
   }, []);
 
-  const login = (token) => {
+  const login = (token, isAdmin) => {
     localStorage.setItem('token', token);
     axios.get('http://localhost:5000/api/auth/me', {
       headers: {
@@ -36,6 +39,7 @@ export const AuthProvider = ({ children }) => {
     .then(response => {
       setUser(response.data.user);
       setIsLoggedIn(true);
+      setIsAdmin(isAdmin);
     });
   };
 
@@ -43,10 +47,11 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('token');
     setIsLoggedIn(false);
     setUser(null);
+    setIsAdmin(false);
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, user, login, logout }}>
+    <AuthContext.Provider value={{ isLoggedIn, user, isAdmin, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

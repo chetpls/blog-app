@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../AuthContext';
-import "../styles/Navbar.css";
+import { AuthContext } from '../../../../frontend/blog-app/src/AuthContext';
+import "../../../../frontend/blog-app/src/styles/Navbar.css";
 
 function Navbar() {
   const { isLoggedIn, isAdmin, logout } = useContext(AuthContext);
@@ -14,11 +14,10 @@ function Navbar() {
 
   return (
     <div className="header">
-      <h3>Blog</h3>
+      <h3>Admin Panel</h3>
       <nav className="nav-center">
-      <NavLink exact to="/" className={({ isActive }) => isActive ? "activeLink" : ""}>Home</NavLink>
-<NavLink to="/articles" className={({ isActive }) => isActive ? "activeLink" : ""}>All Articles</NavLink>
-<NavLink to="/about" className={({ isActive }) => isActive ? "activeLink" : ""}>About Us</NavLink>
+      {isAdmin && <NavLink to="/dashboard" className={({ isActive }) => isActive ? "activeLink" : ""}>Dashboard</NavLink>}
+        {isAdmin && <NavLink to="/new-post" className={({ isActive }) => isActive ? "activeLink" : ""}>New Post</NavLink>}
       </nav>
       <nav className="nav-right">
         {isLoggedIn ? (

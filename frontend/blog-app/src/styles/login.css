@@ -58,3 +58,10 @@
     font-size: 12px;
     background-color: #242424;
 }
+
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+}

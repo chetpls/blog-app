@@ -3,12 +3,12 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: #f8f9fa;
+    background-color: #1A1A1A;
+    color: white;
 }
 
 .header h3 {
     margin: 0;
-    color:#000;
     font-size: 32px;
 }
 
@@ -24,6 +24,19 @@
 
 nav a {
     text-decoration: none;
-    color: #000;
+    color: #7E7E81;
     font-size: 16px;
+    padding: 5px 15px;
+}
+
+.activeLink {
+    color: white; 
+    border-radius: 10px;
+    border: 1px solid #333333;
+    background-color: #141414;
+}
+
+.nav-right button {
+    background-color: #FFD11A;
+    color: #141414;
 }

@@ -1,35 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import NewPost from './pages/NewPost';
+import './App.css';
+import { AuthProvider } from '../../../frontend/blog-app/src/AuthContext';
+import Login from '../../../frontend/blog-app/src/components/login';
+import Register from '../../../frontend/blog-app/src/components/register';
+import Footer from './components/Footer';
+import HomePage from './pages/HomePage';
+import Dashboard from './pages/Dashboard';
+import EditPost from './pages/EditPost';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <AuthProvider>
+    <Router>
+    <div className="app-container">
+      <Navbar />
+      <div className="content-container">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+          <Route path="/new-post" element={<NewPost />} />
+          <Route path="/posts/:id/edit" element={<EditPost />} /> {/* Add this route */}
+        </Routes>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <Footer />
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </Router>
+    </AuthProvider>
+  );
 }
 
-export default App
+export default App;

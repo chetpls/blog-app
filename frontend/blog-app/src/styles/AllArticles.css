@@ -1,0 +1,98 @@
+.all-articles {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .all-articles p {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .all-articles h2 {
+    text-align: center;
+  }
+  
+  .articles {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #141414;
+    padding: 20px 0;
+  }
+  
+  .article {
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+    padding: 50px 50px;
+    gap: 15px;
+    border-top: 1px solid #262626;
+    border-bottom: 1px solid #262626;
+
+  }
+  
+  .articleLeft {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex: 1;
+    gap:10px;
+
+  }
+  
+  .articleMiddle {
+    display: flex;
+    flex-direction: column;
+    flex: 7;
+    gap:25px
+  }
+
+
+  
+  
+  .articleStats {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+  }
+  
+  .stat {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    border-radius: 10px;
+    border: 1px solid gray;
+    color: #98989A;
+    padding: 3px 10px;
+    background-color: #262626;
+  }
+  .articleRight{
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .articleMiddle h3{
+    margin: 0;
+    padding:0;
+    font-size: 24px;
+    color:white;
+  }
+
+  .articleMiddle p, .articleMiddle .content{
+    color: #98989A;
+  }
+
+  .readMoreButton{
+    background-color: transparent;
+    border: 1px solid #98989A;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  

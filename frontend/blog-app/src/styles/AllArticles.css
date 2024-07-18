@@ -15,7 +15,7 @@
     text-align: center;
   }
   
-  .articles {
+  .articleCards {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -23,7 +23,7 @@
     padding: 20px 0;
   }
   
-  .article {
+  .articleCard {
     display: flex;
     flex-direction: row;
     cursor: pointer;
@@ -42,6 +42,11 @@
     gap:10px;
 
   }
+
+  .articleLeft .author{
+    color:white;
+    font-weight: bold;
+  }
   
   .articleMiddle {
     display: flex;
@@ -53,18 +58,18 @@
 
   
   
-  .articleStats {
+  .articleCardStats {
     display: flex;
     flex-direction: row;
     gap: 15px;
   }
   
-  .stat {
+  .articleCardStat {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 5px;
-    border-radius: 10px;
+    border-radius: 30px;
     border: 1px solid gray;
     color: #98989A;
     padding: 3px 10px;

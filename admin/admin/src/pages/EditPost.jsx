@@ -8,6 +8,8 @@ function EditPost() {
   const { id } = useParams();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [category, setCategory] = useState('');
+  const [readingTime, setReadingTime] = useState('');
   const [published, setPublished] = useState(false);
   const navigate = useNavigate();
 
@@ -23,6 +25,8 @@ function EditPost() {
         const post = response.data;
         setTitle(post.title);
         setContent(post.content);
+        setCategory(post.category);
+        setReadingTime(post.readingTime);
         setPublished(post.published);
       } catch (error) {
         console.error('Error fetching post', error);
@@ -42,7 +46,7 @@ function EditPost() {
       const token = localStorage.getItem('token');
       await axios.put(
         `http://localhost:5000/api/posts/${id}/edit`,
-        { title, content, published },
+        { title, content, published, category, readingTime },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -70,6 +74,24 @@ function EditPost() {
               required
             />
             <label>Title:</label>
+          </div>
+          <div className="entryArea">
+            <input
+              type="text"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              required
+            />
+            <label>Category:</label>
+          </div>
+          <div className="entryArea">
+            <input
+              type="text"
+              value={readingTime}
+              onChange={(e) => setReadingTime(e.target.value)}
+              required
+            />
+            <label>ReadingTime:</label>
           </div>
           <label>Content:</label>
           <Editor

@@ -2,13 +2,15 @@
 const Post = require('../models/post');
 
 const createPost = async (req, res) => {
-  const { title, content, published } = req.body;
+  const { title, content, published, category, readingTime } = req.body;
   try {
     const post = new Post({
       title,
       content,
       author: req.user.userId,
       published,
+      category,
+      readingTime,
     });
     await post.save();
     res.status(201).json(post);
@@ -19,9 +21,9 @@ const createPost = async (req, res) => {
 
 const editPost = async (req, res) => {
   const { id } = req.params;
-  const { title, content, published } = req.body;
+  const { title, content, published, category, readingTime } = req.body;
   try {
-    const post = await Post.findByIdAndUpdate(id, { title, content, published }, { new: true });
+    const post = await Post.findByIdAndUpdate(id, { title, content, published, category, readingTime }, { new: true });
     if (!post) {
       return res.status(404).json({ message: 'Post not found' });
     }

@@ -3,18 +3,19 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 20px;
+    width: 100%;
   }
   
   .new-post form {
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 600px;
+
   }
   
   .entryArea {
-    margin-bottom: 15px;
+    margin-bottom: 15px;    
+    width: 100%;
   }
   
   .entryArea label {
@@ -22,18 +23,16 @@
     margin-bottom: 5px;
   }
   
-  .entryArea input,
-  .entryArea textarea {
+  .new-post .entryArea input {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    box-sizing: border-box;
+
   }
   
-  .entryArea textarea {
-    height: 150px;
-    resize: vertical;
-  }
+
   
   .entryArea input[type="checkbox"] {
     width: auto;
@@ -53,3 +52,11 @@
     background-color: #0056b3;
   }
   
+  .editorContainer {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .editorContainer .tox.tox-tinymce {
+    width: 100% !important;
+  }

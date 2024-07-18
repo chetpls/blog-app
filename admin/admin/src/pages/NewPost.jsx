@@ -7,6 +7,8 @@ import '../styles/NewPost.css';
 function NewPost() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [category, setCategory] = useState('');
+  const [readingTime, setReadingTime] = useState('');
   const [published, setPublished] = useState(false);
   const navigate = useNavigate();
 
@@ -20,7 +22,7 @@ function NewPost() {
       const token = localStorage.getItem('token');
       const response = await axios.post(
         'http://localhost:5000/api/posts/create',
-        { title, content, published },
+        { title, content, published, category, readingTime },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -49,27 +51,48 @@ function NewPost() {
             required
           />          <label>Title:</label>
         </div>
+        <div className="entryArea">
+
+          <input
+            type="text"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            required
+          />          <label>Category:</label>
+        </div>
+        <div className="entryArea">
+
+          <input
+            type="text"
+            value={readingTime}
+            onChange={(e) => setReadingTime(e.target.value)}
+            required
+          />          <label>Reading Time:</label>
+        </div>
         {/* <div className="entryArea"> */}
           <label>Content:</label>
-          <Editor
-            apiKey={import.meta.env.VITE_EDITOR_API_KEY} 
-            initialValue=""
-            init={{
-              height: 500,
-              menubar: false,
-              plugins: [
-                'advlist autolink lists link image charmap print preview anchor',
-                'searchreplace visualblocks code fullscreen',
-                'insertdatetime media table paste code help wordcount'
-              ],
-              toolbar:
-                'undo redo | formatselect | bold italic backcolor | \
-                alignleft aligncenter alignright alignjustify | \
-                bullist numlist outdent indent | removeformat | help'
-            }}
-            value={content}
-            onEditorChange={handleEditorChange}
-          />
+          <div className="editorContainer">
+  <Editor
+    apiKey={import.meta.env.VITE_EDITOR_API_KEY} 
+    initialValue=""
+    init={{
+      height: 500,
+      menubar: false,
+      plugins: [
+        'advlist autolink lists link image charmap print preview anchor',
+        'searchreplace visualblocks code fullscreen',
+        'insertdatetime media table paste code help wordcount'
+      ],
+      toolbar:
+        'undo redo | formatselect | bold italic backcolor | \
+        alignleft aligncenter alignright alignjustify | \
+        bullist numlist outdent indent | removeformat | help',
+      width: '100%', // Add this line
+    }}
+    value={content}
+    onEditorChange={handleEditorChange}
+  />
+</div>
         {/* </div> */}
         <div className="publish">
           <label>Publish:</label>

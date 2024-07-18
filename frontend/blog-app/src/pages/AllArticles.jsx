@@ -36,25 +36,29 @@ function AllArticles() {
   return (
     <div className="all-articles">
       <h2>Discover the World of Headlines</h2>
-      <div className="articles">
+      <div className="articleCards">
         {posts.map(post => (
-          <div key={post._id} className="article">
+          <div key={post._id} className="articleCard">
             <div className="articleLeft">
               <FaRegUser size={30} />
-              <p>{post.author.username}</p>
+              <div className="articleLeftText">
+                <p className="author">{post.author.username}</p>
+                <p className="category">{post.category}</p>
+              </div>
+              
             </div>
             <div className="articleMiddle">
               <p className="articleDate">{formatDate(post.createdAt)}</p>
-              <div className="articleInfo">
+              <div className="articleCardInfo">
                 <h3>{post.title}</h3>
                 <div className="content" dangerouslySetInnerHTML={{ __html: post.content }} />
               </div>
-              <div className="articleStats">
-                <div className="stat">
+              <div className="articleCardStats">
+                <div className="articleCardStat">
                   <FaRegHeart />
                   <p>24.5k</p>
                 </div>
-                <div className="stat">
+                <div className="articleCardStat">
                   <FaRegComment />
                   <p>50</p>
                 </div>

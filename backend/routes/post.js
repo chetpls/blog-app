@@ -3,13 +3,24 @@ const router = express.Router();
 const auth = require('../middleware/auth');
 const adminAuth = require('../middleware/adminAuth');
 const postController = require('../controllers/postController');
+const { upload } = require('../config/cloudinary');
 
-router.post('/create', auth, adminAuth, postController.createPost);
+// Create a new post
+router.post('/', upload.single('coverImage'), auth, adminAuth, postController.createPost);
+
+// Get all posts (for authenticated users)
 router.get('/', auth, postController.getAllPosts);
-router.get('/published', postController.getAllPublishedPosts);
-router.get('/:id', postController.getPostById);
-router.put('/:id/edit', auth, adminAuth, postController.editPost);
-router.delete('/:id', auth, adminAuth, postController.deletePost);
 
+// Get all published posts (public)
+router.get('/published', postController.getAllPublishedPosts);
+
+// Get a specific post by ID
+router.get('/:id', postController.getPostById);
+
+// Update a post
+router.put('/:id', upload.single('coverImage'), auth, adminAuth, postController.editPost);
+
+// Delete a post
+router.delete('/:id', auth, adminAuth, postController.deletePost);
 
 module.exports = router;

@@ -1,5 +1,6 @@
+// newpost.jsx
 import React, { useState } from 'react';
-import axios from 'axios';
+import axios from '../../../../frontend/blog-app/src/axios';
 import { useNavigate } from 'react-router-dom';
 import { Editor } from '@tinymce/tinymce-react';
 import '../styles/NewPost.css';
@@ -9,6 +10,7 @@ function NewPost() {
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('');
   const [readingTime, setReadingTime] = useState('');
+  const [coverImage, setCoverImage] = useState(null);
   const [published, setPublished] = useState(false);
   const navigate = useNavigate();
 
@@ -16,16 +18,29 @@ function NewPost() {
     setContent(content);
   };
 
+  const handleImageChange = (e) => {
+    setCoverImage(e.target.files[0]);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('content', content);
+    formData.append('category', category);
+    formData.append('readingTime', readingTime);
+    formData.append('published', published);
+    formData.append('coverImage', coverImage);
+  
     try {
       const token = localStorage.getItem('token');
       const response = await axios.post(
-        'http://localhost:5000/api/posts/create',
-        { title, content, published, category, readingTime },
+        'http://localhost:5000/api/posts',
+        formData,
         {
           headers: {
             Authorization: `Bearer ${token}`,
+            'Content-Type': 'multipart/form-data',
           },
         }
       );
@@ -36,75 +51,84 @@ function NewPost() {
       alert('Failed to create post');
     }
   };
+  
 
   return (
     <div className="new-post">
       <h2>Create New Post</h2>
       <div className="formContainer">
-      <form onSubmit={handleSubmit}>
-        <div className="entryArea">
+        <form onSubmit={handleSubmit}>
+          <div className="entryArea">
 
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-          />          <label>Title:</label>
-        </div>
-        <div className="entryArea">
-
-          <input
-            type="text"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            required
-          />          <label>Category:</label>
-        </div>
-        <div className="entryArea">
-
-          <input
-            type="text"
-            value={readingTime}
-            onChange={(e) => setReadingTime(e.target.value)}
-            required
-          />          <label>Reading Time:</label>
-        </div>
-        {/* <div className="entryArea"> */}
-          <label>Content:</label>
-          <div className="editorContainer">
-  <Editor
-    apiKey={import.meta.env.VITE_EDITOR_API_KEY} 
-    initialValue=""
-    init={{
-      height: 500,
-      menubar: false,
-      plugins: [
-        'advlist autolink lists link image charmap print preview anchor',
-        'searchreplace visualblocks code fullscreen',
-        'insertdatetime media table paste code help wordcount'
-      ],
-      toolbar:
-        'undo redo | formatselect | bold italic backcolor | \
-        alignleft aligncenter alignright alignjustify | \
-        bullist numlist outdent indent | removeformat | help',
-      width: '100%', // Add this line
-    }}
-    value={content}
-    onEditorChange={handleEditorChange}
-  />
-</div>
-        {/* </div> */}
-        <div className="publish">
-          <label>Publish:</label>
-          <input
-            type="checkbox"
-            checked={published}
-            onChange={(e) => setPublished(e.target.checked)}
-          />
-        </div>
-        <button type="submit">Create Post</button>
-      </form>
-    </div>
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+            />            <label>Title:</label>
+          </div>
+          <div className="entryArea">
+    
+            <input
+              type="text"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              required
+            />        <label>Category:</label>
+          </div>
+          <div className="entryArea">
+ 
+            <input
+              type="text"
+              value={readingTime}
+              onChange={(e) => setReadingTime(e.target.value)}
+              required
+            />           <label>Reading Time:</label>
+          </div>
+          {/* <div className="entryArea"> */}
+            <label>Cover Image:</label>
+            <input
+              type="file"
+              onChange={handleImageChange}
+              required
+            />
+          {/* </div> */}
+          <div className="entryArea">
+            <label>Content:</label>
+            <div className="editorContainer">
+              <Editor
+                apiKey={import.meta.env.VITE_EDITOR_API_KEY}
+                initialValue=""
+                init={{
+                  height: 500,
+                  menubar: true,
+                  plugins: [
+                    'advlist autolink lists link image charmap print preview anchor',
+                    'searchreplace visualblocks code fullscreen',
+                    'insertdatetime media table paste code help wordcount',
+                  ],
+                  toolbar:
+                    'undo redo | formatselect | bold italic backcolor | \
+                    alignleft aligncenter alignright alignjustify | \
+                    bullist numlist outdent indent | removeformat | help',
+                  width: '100%',
+                }}
+                value={content}
+                onEditorChange={handleEditorChange}
+              />
+            </div>
+          </div>
+          <div className="publish">
+            <label>Publish:</label>
+            <input
+              type="checkbox"
+              checked={published}
+              onChange={(e) => setPublished(e.target.checked)}
+            />
+          </div>
+          <button type="submit">Create Post</button>
+        </form>
+      </div>
     </div>
   );
 }

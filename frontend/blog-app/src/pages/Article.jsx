@@ -31,7 +31,13 @@ function Article() {
 
   return (
     <div className="article">
-      <h1>{post.title}</h1>
+      <div 
+        className="articleCover" 
+        style={{
+          backgroundImage: `url(${post.coverImage})`,
+        }}
+        >      <h1 className="articleTitle">{post.title}</h1></div>
+
       <div className="articleContainer">
       <div className="articleContent">
         <div dangerouslySetInnerHTML={{ __html: post.content }} />

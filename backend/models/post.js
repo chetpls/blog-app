@@ -8,6 +8,7 @@ const PostSchema = new mongoose.Schema({
     category: {type: String, required:true},
     readingTime: {type: String, required:true},
     published:{type:Boolean, default: false},
+    coverImage:{type: String, required: true},
     createdAt:{type:Date, default: Date.now},
     updatedAt:{type:Date, default: Date.now},
 });

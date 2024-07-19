@@ -11,6 +11,8 @@ function EditPost() {
   const [category, setCategory] = useState('');
   const [readingTime, setReadingTime] = useState('');
   const [published, setPublished] = useState(false);
+  const [coverImage, setCoverImage] = useState(null);
+  const [currentCoverImage, setCurrentCoverImage] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,6 +30,7 @@ function EditPost() {
         setCategory(post.category);
         setReadingTime(post.readingTime);
         setPublished(post.published);
+        setCurrentCoverImage(post.coverImage);
       } catch (error) {
         console.error('Error fetching post', error);
       }
@@ -40,16 +43,31 @@ function EditPost() {
     setContent(content);
   };
 
+  const handleImageChange = (e) => {
+    setCoverImage(e.target.files[0]);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('content', content);
+    formData.append('category', category);
+    formData.append('readingTime', readingTime);
+    formData.append('published', published);
+    if (coverImage) {
+      formData.append('coverImage', coverImage);
+    }
+
     try {
       const token = localStorage.getItem('token');
       await axios.put(
-        `http://localhost:5000/api/posts/${id}/edit`,
-        { title, content, published, category, readingTime },
+        `http://localhost:5000/api/posts/${id}`,
+        formData,
         {
           headers: {
             Authorization: `Bearer ${token}`,
+            'Content-Type': 'multipart/form-data',
           },
         }
       );
@@ -93,13 +111,23 @@ function EditPost() {
             />
             <label>ReadingTime:</label>
           </div>
+          {/* <div className="entryArea"> */}
+            <label>Cover Image:</label>
+            {currentCoverImage && (
+              <img src={currentCoverImage} alt="Current cover" style={{maxWidth: '200px'}} />
+            )}
+            <input
+              type="file"
+              onChange={handleImageChange}
+            />
+          {/* </div> */}
           <label>Content:</label>
           <Editor
             apiKey={import.meta.env.VITE_EDITOR_API_KEY}
             initialValue=""
             init={{
               height: 500,
-              menubar: false,
+              menubar: true,
               plugins: [
                 'advlist autolink lists link image charmap print preview anchor',
                 'searchreplace visualblocks code fullscreen',

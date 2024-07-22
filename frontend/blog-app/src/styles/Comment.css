@@ -1,0 +1,69 @@
+.comment .entryArea input:focus~label,
+.comment .entryArea input:valid~label
+{
+    top:0;
+    font-size: 12px;
+    background-color: #141414;
+} 
+
+.comment .entryArea input{
+    width: 100%;
+}
+
+.comment{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.comment form{
+    width: 100%;
+    padding:0 10px 30px 10px;
+}
+
+.comment .entryArea {
+    margin-bottom: 15px;    
+    width: 100%;
+  }
+.comment h2{
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.commentsList{
+    display: flex;
+    flex-direction: column-reverse;
+    padding:5px 10px;
+    margin:0;
+}
+
+.commentItem{
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+    padding: 10px;
+    border: 1px solid #262626;
+}
+
+.commentItem .commentDate{
+    font-size: 12px;
+    text-align: end;
+}
+
+.commentsListContainer{
+    border-top: 1px solid #262626;
+    padding-top: 30px;
+}
+
+.loginPrompt{
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.commentItem .commentContent span{
+    color: #98989A;
+}

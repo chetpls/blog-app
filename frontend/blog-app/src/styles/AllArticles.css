@@ -94,6 +94,7 @@
   }
 
   .readMoreButton{
+    color:white;
     background-color: transparent;
     border: 1px solid #98989A;
     display: flex;

@@ -1,3 +1,9 @@
+/* Global styles */
+* {
+    box-sizing: border-box;
+}
+
+/* Header styles */
 .header {
     display: flex;
     justify-content: space-between;
@@ -5,6 +11,7 @@
     padding: 10px 20px;
     background-color: #1A1A1A;
     color: white;
+    position: relative;
 }
 
 .header h3 {
@@ -12,6 +19,7 @@
     font-size: 32px;
 }
 
+/* Navigation styles */
 .nav-center {
     display: flex;
     gap: 20px;
@@ -39,4 +47,51 @@ nav a {
 .nav-right button {
     background-color: #FFD11A;
     color: #141414;
+}
+
+/* Hamburger menu styles */
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+}
+
+.nav-wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .nav-wrapper {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background-color: #1A1A1A;
+        padding: 10px;
+        z-index: 10;
+    }
+
+    .nav-wrapper.active {
+        display: flex;
+    }
+
+    .nav-center,
+    .nav-right {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .hamburger {
+        display: block;
+    }
 }

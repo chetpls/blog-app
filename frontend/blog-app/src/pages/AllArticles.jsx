@@ -51,7 +51,8 @@ function AllArticles() {
               <p className="articleDate">{formatDate(post.createdAt)}</p>
               <div className="articleCardInfo">
                 <h3>{post.title}</h3>
-                <div className="content" dangerouslySetInnerHTML={{ __html: post.content }} />
+                {/* <div className="content" dangerouslySetInnerHTML={{ __html: post.content }} /> */}
+                <p className='content'>{post.description}</p>
               </div>
               <div className="articleCardStats">
                 <div className="articleCardStat">

@@ -3,6 +3,7 @@ import axios from "../axios"; // Make sure you're using the correct axios instan
 import { useParams } from "react-router-dom";
 import "../styles/Article.css";
 import { FaRegHeart, FaRegComment } from "react-icons/fa";
+import Comment from "../components/Comment";
 
 function Article() {
   const [post, setPost] = useState(null);
@@ -39,11 +40,17 @@ function Article() {
         >      <h1 className="articleTitle">{post.title}</h1></div>
 
       <div className="articleContainer">
-      <div className="articleContent">
-        <div dangerouslySetInnerHTML={{ __html: post.content }} />
+
+      <div className="articleContent">        
+        <div className="articleDescription">
+          <h3>Description</h3>
+          <p>{post.description}</p>
+        </div>
+        <div className="articleBody">
+        <div dangerouslySetInnerHTML={{ __html: post.content }} /></div>
       </div>
       <div className="articleInfo">
-        <div className="articleStats">
+        {/* <div className="articleStats">
           <div className="stat">
             <FaRegHeart />
             <p>24.5k</p>
@@ -52,7 +59,7 @@ function Article() {
             <FaRegComment />
             <p>50</p>
           </div>
-        </div>
+        </div> */}
         <div className="articleMetas">
           <div className="articleMeta">
             <p className="articleMetaTitle">Publication Date</p>
@@ -70,6 +77,9 @@ function Article() {
             <p className="articleMetaTitle">Author Name</p>
             <p className="articleMetaData">{post.author.username}</p>
           </div>
+        </div>
+        <div className="articleComments">
+          <Comment postId={id} />
         </div>
       </div>
       </div>

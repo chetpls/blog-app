@@ -60,3 +60,21 @@
   .editorContainer .tox.tox-tinymce {
     width: 100% !important;
   }
+
+  .description{
+    display: flex;
+    flex-direction: column;    
+    width: 100%;
+
+  }
+  .description textarea{
+    width: 100%;
+    resize: none;
+  }
+
+  .coverImage{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap:10px;
+  }

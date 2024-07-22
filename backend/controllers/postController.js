@@ -26,6 +26,7 @@ const createPost = async (req, res) => {
       author: req.user.userId,
       published: req.body.published === 'true',
       category: req.body.category,
+      description: req.body.description,
       readingTime: req.body.readingTime,
       coverImage: coverImage,
     });
@@ -43,13 +44,13 @@ const createPost = async (req, res) => {
 
 const editPost = async (req, res) => {
   const { id } = req.params;
-  const { title, content, published, category, readingTime } = req.body;
+  const { title, content, published, category, readingTime, description } = req.body;
   try {
     let coverImage = req.body.coverImage;
     if (req.file) {
       coverImage = req.file.path;
     }
-    const post = await Post.findByIdAndUpdate(id, { title, content, published, category, readingTime, coverImage }, { new: true });
+    const post = await Post.findByIdAndUpdate(id, { title, content, published, category, readingTime, coverImage, description}, { new: true });
     if (!post) {
       return res.status(404).json({ message: 'Post not found' });
     }

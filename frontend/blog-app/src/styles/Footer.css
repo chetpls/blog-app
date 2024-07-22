@@ -1,9 +1,14 @@
+* {
+    box-sizing: border-box;
+}
+
 .footerSection {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     flex-wrap: wrap;
     padding: 20px;
+    background-color: #1a1a1a;
 }
 
 .quickLinks, .customerService, .socialMedia, .legalLinks {

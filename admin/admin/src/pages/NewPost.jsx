@@ -10,6 +10,7 @@ function NewPost() {
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('');
   const [readingTime, setReadingTime] = useState('');
+  const [description, setDescription] = useState('');
   const [coverImage, setCoverImage] = useState(null);
   const [published, setPublished] = useState(false);
   const navigate = useNavigate();
@@ -30,7 +31,8 @@ function NewPost() {
     formData.append('category', category);
     formData.append('readingTime', readingTime);
     formData.append('published', published);
-    formData.append('coverImage', coverImage);
+    formData.append('coverImage', coverImage);    
+    formData.append('description', description);
   
     try {
       const token = localStorage.getItem('token');
@@ -85,17 +87,29 @@ function NewPost() {
               required
             />           <label>Reading Time:</label>
           </div>
+            <div className="description">
+            <label>Description:</label>
+            <textarea
+              type="text"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              rows="4"
+              maxLength={300}
+              required
+            />  </div>         
           {/* <div className="entryArea"> */}
+          <div className="coverImage">
             <label>Cover Image:</label>
             <input
               type="file"
               onChange={handleImageChange}
+              
               required
-            />
+            /></div>
           {/* </div> */}
-          <div className="entryArea">
-            <label>Content:</label>
-            <div className="editorContainer">
+
+            
+            <div className="editorContainer"><label>Content:</label>
               <Editor
                 apiKey={import.meta.env.VITE_EDITOR_API_KEY}
                 initialValue=""
@@ -117,7 +131,7 @@ function NewPost() {
                 onEditorChange={handleEditorChange}
               />
             </div>
-          </div>
+
           <div className="publish">
             <label>Publish:</label>
             <input

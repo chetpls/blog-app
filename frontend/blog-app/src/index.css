@@ -47,10 +47,17 @@ button, input[type="submit"] {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  color: #141414;
+  background-color: #FFD11A;
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
+input[type="submit"]{
+  color: #141414;
+  background-color: #FFD11A;
+}
+
 button:hover, input[type="submit"]:hover {
   border-color: white;
 }

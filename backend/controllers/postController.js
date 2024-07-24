@@ -1,4 +1,4 @@
-const Post = require("../models/Post");
+const Post = require("../models/post");
 const { cloudinary } = require("../config/cloudinary");
 
 const createPost = async (req, res) => {
@@ -10,12 +10,16 @@ const createPost = async (req, res) => {
 
     // Validate required fields
     if (!req.body.title || !req.body.content) {
-      return res.status(400).json({ message: "Title and content are required" });
+      return res
+        .status(400)
+        .json({ message: "Title and content are required" });
     }
 
     // Check if user is authenticated and is an admin
     if (!req.user || !req.user.userId || !req.user.isAdmin) {
-      return res.status(401).json({ message: "User not authenticated or not an admin" });
+      return res
+        .status(401)
+        .json({ message: "User not authenticated or not an admin" });
     }
 
     const coverImage = req.file ? req.file.path : null;
@@ -39,25 +43,46 @@ const createPost = async (req, res) => {
     res.status(201).json(post);
   } catch (error) {
     console.error("Error in createPost:", error);
-    res.status(500).json({ message: "Error creating post", error: error.toString(), stack: error.stack });
+    res
+      .status(500)
+      .json({
+        message: "Error creating post",
+        error: error.toString(),
+        stack: error.stack,
+      });
   }
 };
 
 const editPost = async (req, res) => {
   const { id } = req.params;
-  const { title, content, published, category, readingTime, description } = req.body;
+  const { title, content, published, category, readingTime, description } =
+    req.body;
   try {
     let coverImage = req.body.coverImage;
     if (req.file) {
       coverImage = req.file.path;
     }
-    const post = await Post.findByIdAndUpdate(id, { title, content, published, category, readingTime, coverImage, description}, { new: true });
+    const post = await Post.findByIdAndUpdate(
+      id,
+      {
+        title,
+        content,
+        published,
+        category,
+        readingTime,
+        coverImage,
+        description,
+      },
+      { new: true }
+    );
     if (!post) {
       return res.status(404).json({ message: "Post not found" });
     }
     res.status(200).json(post);
   } catch (error) {
-    res.status(500).json({ message: "Error updating post", error: error.toString() });
+    res
+      .status(500)
+      .json({ message: "Error updating post", error: error.toString() });
   }
 };
 
@@ -92,7 +117,13 @@ const deletePost = async (req, res) => {
     res.status(200).send({ message: "Post deleted" });
   } catch (error) {
     console.error("Error in deletePost:", error);
-    res.status(500).json({ message: "Error deleting post", error: error.toString(), stack: error.stack });
+    res
+      .status(500)
+      .json({
+        message: "Error deleting post",
+        error: error.toString(),
+        stack: error.stack,
+      });
   }
 };
 
@@ -101,30 +132,46 @@ const getAllPosts = async (req, res) => {
     const posts = await Post.find().populate("author", "username");
     res.status(200).json(posts);
   } catch (error) {
-    res.status(500).json({message:"Error fetching posts", error: error.toString()});
+    res
+      .status(500)
+      .json({ message: "Error fetching posts", error: error.toString() });
   }
 };
 
-const getPostById = async(req, res) => {
-  const {id} = req.params;
-  try{
+const getPostById = async (req, res) => {
+  const { id } = req.params;
+  try {
     const post = await Post.findById(id).populate("author", "username");
     if (!post) {
-      return res.status(404).json({message: "Post not found"});
+      return res.status(404).json({ message: "Post not found" });
     }
     res.status(200).json(post);
   } catch (error) {
-    res.status(500).json({message:"Error fetching post", error: error.toString()});
+    res
+      .status(500)
+      .json({ message: "Error fetching post", error: error.toString() });
   }
 };
 
 const getAllPublishedPosts = async (req, res) => {
   try {
-    const publishedPosts = await Post.find({ published: true }).populate("author","username");
+    const publishedPosts = await Post.find({ published: true }).populate(
+      "author",
+      "username"
+    );
     res.status(200).json(publishedPosts);
   } catch (error) {
-    res.status(500).json({ message: "Error fetching posts", error: error.toString() });
+    res
+      .status(500)
+      .json({ message: "Error fetching posts", error: error.toString() });
   }
 };
 
-module.exports = { createPost, editPost, deletePost, getAllPosts, getPostById, getAllPublishedPosts };
+module.exports = {
+  createPost,
+  editPost,
+  deletePost,
+  getAllPosts,
+  getPostById,
+  getAllPublishedPosts,
+};

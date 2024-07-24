@@ -1,6 +1,10 @@
 .dashboard {
     padding: 20px;
   }
+  .dashboard h2{
+    margin: 0;
+    padding:0;
+  }
   
   .posts {
     display: flex;
@@ -22,17 +26,17 @@
     margin: 5px 0;
   }
   
-  button {
-    margin-bottom: 20px;
-    padding: 10px 20px;
-    border: none;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-  }
   
-  button:hover {
-    background-color: #0056b3;
+  .dashboardHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0 10px 0;
   }
-  
+  .dashboardButtons{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    gap:10px;
+  }

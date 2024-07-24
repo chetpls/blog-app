@@ -1,6 +1,6 @@
 // newpost.jsx
 import React, { useState } from 'react';
-import axios from '../../../../frontend/blog-app/src/axios';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Editor } from '@tinymce/tinymce-react';
 import '../styles/NewPost.css';
@@ -36,7 +36,7 @@ function NewPost() {
   
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.post(
+      await axios.post(
         'http://localhost:5000/api/posts',
         formData,
         {
@@ -46,7 +46,7 @@ function NewPost() {
           },
         }
       );
-      alert('Post created successfully!');
+      alert('Post updated successfully!');
       navigate('/dashboard');
     } catch (error) {
       console.error('Error creating post', error);
@@ -56,7 +56,7 @@ function NewPost() {
   
 
   return (
-    <div className="new-post">
+    <div className="newPost">
       <h2>Create New Post</h2>
       <div className="formContainer">
         <form onSubmit={handleSubmit}>

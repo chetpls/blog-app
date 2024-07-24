@@ -4,7 +4,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 100px;
+    background-color: #141414;
+    height: 70vh;
+    border-top: 1px solid #262626;
+    border-bottom: 1px solid #262626;
 }
 
 .formContainer form{
@@ -56,7 +59,7 @@
 {
     top:0;
     font-size: 12px;
-    background-color: #262626;
+    background-color: #141414;
 }
 
 

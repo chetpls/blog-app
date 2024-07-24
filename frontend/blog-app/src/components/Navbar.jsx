@@ -19,7 +19,7 @@ function Navbar() {
 
   return (
     <div className="header">
-      <h3>Blog</h3>
+      <h3><span>Tech</span>Blog</h3>
       <div className={`nav-wrapper ${isMobileMenuOpen ? 'active' : ''}`}>
         <nav className="nav-center">
           <NavLink exact to="/" className={({ isActive }) => isActive ? "activeLink" : ""}>Home</NavLink>

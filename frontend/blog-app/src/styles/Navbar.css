@@ -18,6 +18,9 @@
     margin: 0;
     font-size: 32px;
 }
+.header h3 span{
+    color:#FFD11A;
+}
 
 /* Navigation styles */
 .nav-center {

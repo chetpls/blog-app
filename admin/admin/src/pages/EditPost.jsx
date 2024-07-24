@@ -12,6 +12,7 @@ function EditPost() {
   const [readingTime, setReadingTime] = useState('');
   const [published, setPublished] = useState(false);
   const [coverImage, setCoverImage] = useState(null);
+  const [description, setDescription] = useState('');
   const [currentCoverImage, setCurrentCoverImage] = useState('');
   const navigate = useNavigate();
 
@@ -31,6 +32,8 @@ function EditPost() {
         setReadingTime(post.readingTime);
         setPublished(post.published);
         setCurrentCoverImage(post.coverImage);
+        setDescription(post.description);
+        
       } catch (error) {
         console.error('Error fetching post', error);
       }
@@ -55,6 +58,7 @@ function EditPost() {
     formData.append('category', category);
     formData.append('readingTime', readingTime);
     formData.append('published', published);
+    formData.append('description', description);
     if (coverImage) {
       formData.append('coverImage', coverImage);
     }
@@ -80,7 +84,7 @@ function EditPost() {
   };
 
   return (
-    <div className="new-post">
+    <div className="newPost">
       <h2>Edit Post</h2>
       <div className="formContainer">
         <form onSubmit={handleSubmit}>
@@ -111,7 +115,17 @@ function EditPost() {
             />
             <label>ReadingTime:</label>
           </div>
-          {/* <div className="entryArea"> */}
+          <div className="description">
+            <label>Description:</label>
+            <textarea
+              type="text"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              rows="4"
+              maxLength={300}
+              required
+            />  </div>  
+          <div className="coverImage">
             <label>Cover Image:</label>
             {currentCoverImage && (
               <img src={currentCoverImage} alt="Current cover" style={{maxWidth: '200px'}} />
@@ -120,7 +134,7 @@ function EditPost() {
               type="file"
               onChange={handleImageChange}
             />
-          {/* </div> */}
+          </div>
           <label>Content:</label>
           <Editor
             apiKey={import.meta.env.VITE_EDITOR_API_KEY}

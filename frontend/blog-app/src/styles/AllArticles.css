@@ -102,3 +102,10 @@
     align-items: center;
   }
   
+
+  @media (max-width: 768px) {
+    .articleCard{
+      display: flex;
+      flex-direction: column;
+    }
+  }

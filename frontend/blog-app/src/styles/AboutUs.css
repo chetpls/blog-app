@@ -1,0 +1,35 @@
+
+.aboutUsContainer {
+    margin: 0 auto;
+    color: #e0e0e0;
+    font-family: 'Arial', sans-serif;
+    background-color: #141414;
+    border-top: 1px solid #262626;
+    border-bottom: 1px solid #262626;
+  }
+  
+  .aboutUsContainer h2{
+    color:white;
+  }
+
+  .aboutUsSection ul li strong{
+    color:white;
+  }
+  .aboutUsTitle {
+    font-size: 2.5rem;
+    color: white;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .aboutUsContent {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .aboutUsSection {
+    padding:30px;
+    border-top: 1px solid #262626;
+  }
+  

@@ -1,16 +1,19 @@
-.new-post {
+.newPost {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
+    background-color: #141414;
+    border-top: 1px solid #262626;
+    border-bottom: 1px solid #262626;
   }
   
-  .new-post form {
+  .newPost form {
     display: flex;
     flex-direction: column;
     width: 100%;
-
+    padding-bottom: 15px;
   }
   
   .entryArea {
@@ -23,7 +26,7 @@
     margin-bottom: 5px;
   }
   
-  .new-post .entryArea input {
+  .newPost .entryArea input {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -39,18 +42,8 @@
     margin-left: 5px;
   }
   
-  button {
-    padding: 10px 20px;
-    border: none;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-  }
   
-  button:hover {
-    background-color: #0056b3;
-  }
+
   
   .editorContainer {
     width: 100%;

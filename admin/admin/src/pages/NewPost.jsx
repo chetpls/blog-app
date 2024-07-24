@@ -1,6 +1,6 @@
 // newpost.jsx
 import React, { useState } from 'react';
-import axios from 'axios';
+import axios from '../axios';
 import { useNavigate } from 'react-router-dom';
 import { Editor } from '@tinymce/tinymce-react';
 import '../styles/NewPost.css';

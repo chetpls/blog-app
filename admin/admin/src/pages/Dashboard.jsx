@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import axios from 'axios';
+import axios from '../axios';
 import { AuthContext } from '../AuthContext';
 import '../styles/Dashboard.css';
 import { useNavigate } from 'react-router-dom';
@@ -38,7 +38,7 @@ function Dashboard() {
     try {
       const token = localStorage.getItem('token');
       console.log('Attempting to delete post with ID:', postToDelete);
-      const response = await axios.delete(`/api/posts/${postToDelete}`, {
+      const response = await axios.delete(`http://localhost:5000/api/posts/${postToDelete}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

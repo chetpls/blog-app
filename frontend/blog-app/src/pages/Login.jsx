@@ -14,7 +14,7 @@ function Login() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        "/api/auth/login",
         { email, password }
       );
       login(response.data.token, response.data.isAdmin);

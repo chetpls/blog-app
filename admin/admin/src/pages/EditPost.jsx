@@ -20,7 +20,7 @@ function EditPost() {
     const fetchPost = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`http://localhost:5000/api/posts/${id}`, {
+        const response = await axios.get(`/api/posts/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -66,7 +66,7 @@ function EditPost() {
     try {
       const token = localStorage.getItem('token');
       await axios.put(
-        `http://localhost:5000/api/posts/${id}`,
+        `/api/posts/${id}`,
         formData,
         {
           headers: {

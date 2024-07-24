@@ -37,7 +37,7 @@ function NewPost() {
     try {
       const token = localStorage.getItem('token');
       await axios.post(
-        'http://localhost:5000/api/posts',
+        '/api/posts',
         formData,
         {
           headers: {

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../../../frontend/blog-app/src/AuthContext';
+import { AuthContext } from '../AuthContext';
 import "../styles/HomePage.css"
 function HomePage() {
   const { user } = useContext(AuthContext);

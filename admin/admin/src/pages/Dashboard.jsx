@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
-import { AuthContext } from '../../../../frontend/blog-app/src/AuthContext';
+import { AuthContext } from '../AuthContext';
 import '../styles/Dashboard.css';
 import { useNavigate } from 'react-router-dom';
 import ConfirmModal from '../components/ConfirmModal';

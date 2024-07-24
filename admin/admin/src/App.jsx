@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import NewPost from './pages/NewPost';
 import './App.css';
-import { AuthProvider } from '../../../frontend/blog-app/src/AuthContext';
+import { AuthProvider } from './AuthContext';
 import Login from '../../../frontend/blog-app/src/pages/Login';
 import Register from '../../../frontend/blog-app/src/pages/Register';
 import Footer from '../../../frontend/blog-app/src/components/Footer';
